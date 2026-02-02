@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Mainform));
             this.gnrte = new System.Windows.Forms.Button();
+            this.test = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // gnrte
@@ -42,12 +43,23 @@
             this.gnrte.UseVisualStyleBackColor = true;
             this.gnrte.Click += new System.EventHandler(this.gnrte_Click);
             // 
+            // test
+            // 
+            this.test.Location = new System.Drawing.Point(71, 99);
+            this.test.Name = "test";
+            this.test.Size = new System.Drawing.Size(75, 23);
+            this.test.TabIndex = 1;
+            this.test.Text = "Test";
+            this.test.UseVisualStyleBackColor = true;
+            this.test.Click += new System.EventHandler(this.test_Click);
+            // 
             // Mainform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(225, 125);
+            this.ClientSize = new System.Drawing.Size(643, 291);
+            this.Controls.Add(this.test);
             this.Controls.Add(this.gnrte);
             this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Font = new System.Drawing.Font("Calibri", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -64,5 +76,6 @@
         #endregion
 
         private System.Windows.Forms.Button gnrte;
+        private System.Windows.Forms.Button test;
     }
 }
