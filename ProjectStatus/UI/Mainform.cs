@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -12,15 +13,40 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using Form = System.Windows.Forms.Form;
+using Panel = System.Windows.Forms.Panel;
 using Point = System.Drawing.Point;
+using Rectangle = System.Drawing.Rectangle;
 
 namespace ProjectStatus
 {
     public partial class Mainform : Form
     {
+        private void MakePanelRounded(Panel panel, int radius)
+        {
+            Rectangle r = panel.ClientRectangle;
+            int d = radius * 2;
+
+            GraphicsPath path = new GraphicsPath();
+            path.StartFigure();
+            path.AddArc(r.X, r.Y, d, d, 180, 90);
+            path.AddArc(r.Right - d, r.Y, d, d, 270, 90);
+            path.AddArc(r.Right - d, r.Bottom - d, d, d, 0, 90);
+            path.AddArc(r.X, r.Bottom - d, d, d, 90, 90);
+            path.CloseFigure();
+
+            panel.Region = new Region(path);
+        }
         public Mainform()
         {
             InitializeComponent();
+            MakePanelRounded(panel6, 5);
+            MakePanelRounded(panel7, 5);
+            MakePanelRounded(panel8, 5);
+            MakePanelRounded(panel9, 5);
+            MakePanelRounded(panel10, 5);
+            MakePanelRounded(panel11, 5);
+            MakePanelRounded(panel12, 5);
+
             var result = RvtUtils.CheckProjectBasePointAgainstFirstGridIntersection(ExCmd.doc);
             var units = RvtUtils.GetProjectUnit(ExCmd.doc, SpecTypeId.Length);
             var (isCentral, hasWorksets) = RvtUtils.CheckCentralAndWorksets(ExCmd.doc);
