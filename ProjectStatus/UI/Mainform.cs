@@ -29,8 +29,8 @@ namespace ProjectStatus
             bool hasDuplicates = RvtUtils.HasDuplicatedElements(ExCmd.doc);
 
             align.Text = $"Project Base Aligned: {(result.IsAligned ? "YES" : "NO")}";
-            projectbase.Text = $"Project Base Point: \n{RvtUtils.FormatXYZ(result.ProjectBasePoint)}";
-            surveypoint.Text = $"Survey Point: \n{RvtUtils.FormatXYZ(result.SurveyPoint)}";
+            projectbase.Text = $"Project Base Point: \n{RvtUtils.FormatXYZ(result.SurveyPoint)}";
+            surveypoint.Text = $"Survey Point: \n{RvtUtils.FormatXYZ(result.ProjectBasePoint)}";
             gridintersection.Text = $"Grid Intersection: \n{RvtUtils.FormatXYZ(result.GridIntersection)}";
             units_.Text = $"Length Units: {units}";
             iscentral.Text = $"Central File: {(isCentral ? "Yes" : "No")}";

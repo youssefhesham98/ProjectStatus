@@ -420,7 +420,7 @@ namespace ProjectStatus
                 throw new InvalidOperationException("Insufficient grids found.");
 
             Grid leftGrid = verticalGrids.First();
-            Grid bottomGrid = horizontalGrids.First();
+            Grid bottomGrid = horizontalGrids.Last();
 
             Line vLine = (Line)leftGrid.Curve;
             Line hLine = (Line)bottomGrid.Curve;
