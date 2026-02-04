@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using Form = System.Windows.Forms.Form;
+using Point = System.Drawing.Point;
 
 namespace ProjectStatus
 {
@@ -20,6 +21,23 @@ namespace ProjectStatus
         public Mainform()
         {
             InitializeComponent();
+            var result = RvtUtils.CheckProjectBasePointAgainstFirstGridIntersection(ExCmd.doc);
+            var units = RvtUtils.GetProjectUnit(ExCmd.doc, SpecTypeId.Length);
+            var (isCentral, hasWorksets) = RvtUtils.CheckCentralAndWorksets(ExCmd.doc);
+            bool hasPurge = RvtUtils.HasPurgeableElements(ExCmd.doc);
+            var file_size = RvtUtils.GetRevitFileSizeMB(ExCmd.doc);
+            bool hasDuplicates = RvtUtils.HasDuplicatedElements(ExCmd.doc);
+
+            align.Text = $"Project Base Aligned: {(result.IsAligned ? "YES" : "NO")}";
+            projectbase.Text = $"Project Base Point: \n{RvtUtils.FormatXYZ(result.ProjectBasePoint)}";
+            surveypoint.Text = $"Survey Point: \n{RvtUtils.FormatXYZ(result.SurveyPoint)}";
+            gridintersection.Text = $"Grid Intersection: \n{RvtUtils.FormatXYZ(result.GridIntersection)}";
+            units_.Text = $"Length Units: {units}";
+            iscentral.Text = $"Central File: {(isCentral ? "Yes" : "No")}";
+            worksets.Text = $"User Worksets Exist: {(hasWorksets ? "Yes" : "No")}";
+            size.Text = $"File Size: {file_size} MB";
+            purge.Text = $"Purgeable Elements Exist: {(hasPurge ? "Yes" : "No")}";
+            duplicate.Text = $"Duplicate Elements Exist: {(hasDuplicates ? "Yes" : "No")}";
         }
 
         private void gnrte_Click(object sender, EventArgs e)
@@ -55,41 +73,43 @@ namespace ProjectStatus
             var levelDims = RvtUtils.GetLevelDimensions(ExCmd.doc);
             RvtUtils.PrintGridandLevelsDimensions(x,y,levelDims);
 
+            #region Old
+            //var result = RvtUtils.CheckProjectBasePointAgainstFirstGridIntersection(ExCmd.doc);
 
-            var result = RvtUtils.CheckProjectBasePointAgainstFirstGridIntersection(ExCmd.doc);
+            //string msg =
+            //    $"Project Base Point:\n{RvtUtils.FormatXYZ(result.ProjectBasePoint)}\n\n" +
+            //    $"Grid Intersection:\n{RvtUtils.FormatXYZ(result.GridIntersection)}\n\n" +
+            //    $"Aligned: {(result.IsAligned ? "YES" : "NO")}";
 
+            //TaskDialog.Show("Base Point Check", msg);
 
-            string msg =
-                $"Project Base Point:\n{RvtUtils.FormatXYZ(result.ProjectBasePoint)}\n\n" +
-                $"Grid Intersection:\n{RvtUtils.FormatXYZ(result.GridIntersection)}\n\n" +
-                $"Aligned: {(result.IsAligned ? "YES" : "NO")}";
+            ////ExCmd.doc.GetUnits();
 
-            TaskDialog.Show("Base Point Check", msg);
+            //TaskDialog.Show("Units", $"{RvtUtils.GetProjectUnit(ExCmd.doc, SpecTypeId.Length)}");
 
+            //var (isCentral, hasWorksets) = RvtUtils.CheckCentralAndWorksets(ExCmd.doc);
 
-            ExCmd.doc.GetUnits();
+            //string resu =
+            //    $"Central File: {(isCentral ? "Yes" : "No")}\n" +
+            //    $"User Worksets Exist: {(hasWorksets ? "Yes" : "No")}";
 
-            TaskDialog.Show("Units", $"{RvtUtils.GetProjectUnit(ExCmd.doc, SpecTypeId.Length)}");
+            //TaskDialog.Show("Worksharing Health", resu);
 
+            //bool hasPurge = RvtUtils.HasPurgeableElements(ExCmd.doc);
 
-            var (isCentral, hasWorksets) = RvtUtils.CheckCentralAndWorksets(ExCmd.doc);
+            //TaskDialog.Show("Purgeable Elements", $"Purgeable Elements Exist: {(hasPurge ? "Yes" : "No")}");
 
+            //TaskDialog.Show("File Size: ", $"{RvtUtils.GetRevitFileSizeMB(ExCmd.doc)}");
 
-            string resu =
-                $"Central File: {(isCentral ? "Yes" : "No")}\n" +
-                $"User Worksets Exist: {(hasWorksets ? "Yes" : "No")}";
+            //bool hasDuplicates = RvtUtils.HasDuplicatedElements(ExCmd.doc);
 
-            TaskDialog.Show("Worksharing Health", resu);
-            
-            bool hasPurge = RvtUtils.HasPurgeableElements(ExCmd.doc);
+            //TaskDialog.Show("Duplicate Elements Check", hasDuplicates ? "Yes" : "No");
+            #endregion
+        }
 
-            TaskDialog.Show("Purgeable Elements", $"Purgeable Elements Exist: {(hasPurge ? "Yes" : "No")}");
+        private void Mainform_Load(object sender, EventArgs e)
+        {
 
-            TaskDialog.Show("File Size: ", $"{RvtUtils.GetRevitFileSizeMB(ExCmd.doc)}");
-
-            bool hasDuplicates = RvtUtils.HasDuplicatedElements(ExCmd.doc);
-
-            TaskDialog.Show("Duplicate Elements Check", hasDuplicates ? "Yes" : "No");
         }
     }
 }

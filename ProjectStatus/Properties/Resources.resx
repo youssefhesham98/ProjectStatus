@@ -127,6 +127,9 @@
   <data name="Linkedin" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Resources\Linkedin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="list" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\Resources\list.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="ProjectStatus" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Resources\ProjectStatus.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

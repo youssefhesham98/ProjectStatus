@@ -372,9 +372,6 @@ namespace ProjectStatus
 
         public static BasePointGridCheckResult CheckProjectBasePointAgainstFirstGridIntersection(Document doc)
         {
-            // -------------------------------
-            // 1. Get Project Base Point & Survey Point
-            // -------------------------------
             BasePoint projectBasePoint = null;
             BasePoint surveyPoint = null;
 
@@ -393,9 +390,6 @@ namespace ProjectStatus
             if (projectBasePoint == null)
                 throw new InvalidOperationException("Project Base Point not found.");
 
-            // -------------------------------
-            // 2. Collect straight grids
-            // -------------------------------
             var grids = new FilteredElementCollector(doc)
                 .OfClass(typeof(Grid))
                 .Cast<Grid>()
@@ -428,9 +422,6 @@ namespace ProjectStatus
             Grid leftGrid = verticalGrids.First();
             Grid bottomGrid = horizontalGrids.First();
 
-            // -------------------------------
-            // 3. Calculate grid intersection
-            // -------------------------------
             Line vLine = (Line)leftGrid.Curve;
             Line hLine = (Line)bottomGrid.Curve;
 
@@ -443,9 +434,6 @@ namespace ProjectStatus
 
             XYZ intersection = ira.get_Item(0).XYZPoint;
 
-            // -------------------------------
-            // 4. Compare with Project Base Point
-            // -------------------------------
             XYZ pbp = projectBasePoint.Position;
 
             bool isAligned = ArePointsEqual(
@@ -453,9 +441,6 @@ namespace ProjectStatus
                 intersection,
                 tolerance: 0.001); // feet ≈ 0.3 mm
 
-            // -------------------------------
-            // 5. Return result
-            // -------------------------------
             return new BasePointGridCheckResult
             {
                 ProjectBasePoint = pbp,
