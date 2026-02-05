@@ -346,7 +346,7 @@ namespace ProjectStatus
 
             return distances;
         }
-        public static void PrintGridandLevelsDimensions(List<double> xDistances, List<double> yDistances,List<double> levelDistances)
+        public static string PrintGridandLevelsDimensions(List<double> xDistances, List<double> yDistances,List<double> levelDistances)
         {
             var sb = new StringBuilder();
 
@@ -365,8 +365,8 @@ namespace ProjectStatus
                     $"Level {i + 1} → Level {i + 2}: {levelDistances[i]:F8}"
                 );
             }
-
-            TaskDialog.Show("Grid Dimensions", sb.ToString());
+            return sb.ToString();
+            //TaskDialog.Show("Grid Dimensions", sb.ToString());
         }
 
 

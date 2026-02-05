@@ -50,7 +50,7 @@ namespace ProjectStatus
             MakePanelRounded(panel3, 7);
             MakePanelRounded(panel2, 7);
             MakePanelRounded(panel4, 7);
-
+            MakePanelRounded(panel5, 7);
             var result = RvtUtils.CheckProjectBasePointAgainstFirstGridIntersection(ExCmd.doc);
             var units = RvtUtils.GetProjectUnit(ExCmd.doc, SpecTypeId.Length);
             var (isCentral, hasWorksets) = RvtUtils.CheckCentralAndWorksets(ExCmd.doc);
@@ -59,9 +59,10 @@ namespace ProjectStatus
             bool hasDuplicates = RvtUtils.HasDuplicatedElements(ExCmd.doc);
             var (x, y) = RvtUtils.GetGridDimensionsXY(ExCmd.doc);
             var levelDims = RvtUtils.GetLevelDimensions(ExCmd.doc);
-            StringBuilder gridsx = new StringBuilder();
-            StringBuilder gridsy = new StringBuilder();
-            StringBuilder levels = new StringBuilder();
+            string dims = RvtUtils.PrintGridandLevelsDimensions(x, y, levelDims);
+            //StringBuilder gridsx = new StringBuilder();
+            //StringBuilder gridsy = new StringBuilder();
+            //StringBuilder levels = new StringBuilder();
             align.Text = $"Project Base Aligned: {(result.IsAligned ? "YES" : "NO")}";
             projectbase.Text = $"Project Base Point: \n{RvtUtils.FormatXYZ(result.SurveyPoint)}";
             surveypoint.Text = $"Survey Point: \n{RvtUtils.FormatXYZ(result.ProjectBasePoint)}";
@@ -72,34 +73,34 @@ namespace ProjectStatus
             size.Text = $"File Size: {file_size} MB";
             purge.Text = $"Purgeable Elements Exist: {(hasPurge ? "Yes" : "No")}";
             duplicate.Text = $"Duplicate Elements Exist: {(hasDuplicates ? "Yes" : "No")}";
-            foreach (var grid in x)
-            {
-                gridsx.Append($"Grids in X direction.");
-                gridsx.AppendLine(grid.ToString());
-            }
-            foreach (var grid in y)
-            {
-                gridsy.Append($"Grids in Y direction.");
-                gridsy.AppendLine(grid.ToString());
-            }
-            foreach (var level in levelDims)
-            {
-                levels.Append($"Levels diemsnions.");
-                levels.AppendLine(level.ToString());
-            }
-            gridsxdim.Text = gridsx.ToString();
-            gridsydim.Text = gridsy.ToString();
-            levelsdim.Text = levels.ToString();
+            //gridsx.Append($"Grids in X direction.");
+            //foreach (var grid in x)
+            //{
+            //    gridsx.AppendLine(grid.ToString());
+            //}
+            //gridsy.Append($"Grids in Y direction.");
+            //foreach (var grid in y)
+            //{
+            //    gridsy.AppendLine(grid.ToString());
+            //}
+            //levels.Append($"Levels diemsnions.");
+            //foreach (var level in levelDims)
+            //{
+            //    levels.AppendLine(level.ToString());
+            //}
+            gridsxdim.Text = dims;
 
             int finalScore = RvtUtils.CalculateFinalHealthScore(ExCmd.doc);
             string status = RvtUtils.GetHealthLabel(finalScore);
             // Clamp just to be safe
             finalScore = Math.Max(0, Math.Min(100, finalScore));
             score.Value = finalScore;
-            //score.Value = 0;
+            progress.Text = $"Progress: {finalScore}%";
+            status__.Text = $"Status: {status}";
 
+            #region try
+            //score.Value = 0;
             //score.BackColor = Color.FromArgb(50, 50, 50);
-            
             //for (int i = 0; i <= finalScore; i++)
             //{
             //    score.Value = i;
@@ -119,10 +120,8 @@ namespace ProjectStatus
             //{
             //    score.ForeColor = Color.Green;
             //}
-        }
-
-        private void gnrte_Click(object sender, EventArgs e)
-        {
+            #endregion
+            #region try
             //try
             //{
             //    // Generate report
@@ -138,7 +137,7 @@ namespace ProjectStatus
             //{
             //    TaskDialog.Show("Error", $"An error occurred while generating the report:\n{ex.Message}");
             //}
-
+            #endregion
         }
         private void Mainform_Load(object sender, EventArgs e)
         {
