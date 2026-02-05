@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Mainform));
             this.gnrte = new System.Windows.Forms.Button();
-            this.test = new System.Windows.Forms.Button();
             this.align = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -53,33 +52,29 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.gridsxdim = new System.Windows.Forms.Label();
+            this.gridsydim = new System.Windows.Forms.Label();
+            this.levelsdim = new System.Windows.Forms.Label();
+            this.score = new System.Windows.Forms.ProgressBar();
             this.panel9.SuspendLayout();
             this.panel11.SuspendLayout();
             this.panel12.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // gnrte
             // 
-            this.gnrte.Location = new System.Drawing.Point(390, 82);
+            this.gnrte.Location = new System.Drawing.Point(541, 61);
             this.gnrte.Name = "gnrte";
             this.gnrte.Size = new System.Drawing.Size(76, 25);
             this.gnrte.TabIndex = 0;
             this.gnrte.Text = "Generate";
             this.gnrte.UseVisualStyleBackColor = true;
             this.gnrte.Click += new System.EventHandler(this.gnrte_Click);
-            // 
-            // test
-            // 
-            this.test.Location = new System.Drawing.Point(541, 130);
-            this.test.Name = "test";
-            this.test.Size = new System.Drawing.Size(75, 23);
-            this.test.TabIndex = 1;
-            this.test.Text = "Test";
-            this.test.UseVisualStyleBackColor = true;
-            this.test.Click += new System.EventHandler(this.test_Click);
             // 
             // align
             // 
@@ -292,12 +287,66 @@
             this.panel4.Size = new System.Drawing.Size(200, 71);
             this.panel4.TabIndex = 25;
             // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(101)))), ((int)(((byte)(96)))));
+            this.panel5.Controls.Add(this.levelsdim);
+            this.panel5.Controls.Add(this.gridsydim);
+            this.panel5.Controls.Add(this.gridsxdim);
+            this.panel5.Location = new System.Drawing.Point(218, 155);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(200, 308);
+            this.panel5.TabIndex = 26;
+            // 
+            // gridsxdim
+            // 
+            this.gridsxdim.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(101)))), ((int)(((byte)(96)))));
+            this.gridsxdim.ForeColor = System.Drawing.Color.White;
+            this.gridsxdim.Location = new System.Drawing.Point(8, 7);
+            this.gridsxdim.Name = "gridsxdim";
+            this.gridsxdim.Size = new System.Drawing.Size(175, 84);
+            this.gridsxdim.TabIndex = 11;
+            this.gridsxdim.Text = "gridsxdim";
+            // 
+            // gridsydim
+            // 
+            this.gridsydim.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(101)))), ((int)(((byte)(96)))));
+            this.gridsydim.ForeColor = System.Drawing.Color.White;
+            this.gridsydim.Location = new System.Drawing.Point(8, 114);
+            this.gridsydim.Name = "gridsydim";
+            this.gridsydim.Size = new System.Drawing.Size(175, 79);
+            this.gridsydim.TabIndex = 12;
+            this.gridsydim.Text = "gridsydim";
+            // 
+            // levelsdim
+            // 
+            this.levelsdim.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(101)))), ((int)(((byte)(96)))));
+            this.levelsdim.ForeColor = System.Drawing.Color.White;
+            this.levelsdim.Location = new System.Drawing.Point(8, 216);
+            this.levelsdim.Name = "levelsdim";
+            this.levelsdim.Size = new System.Drawing.Size(175, 81);
+            this.levelsdim.TabIndex = 13;
+            this.levelsdim.Text = "levelsdim";
+            // 
+            // score
+            // 
+            this.score.BackColor = System.Drawing.Color.Black;
+            this.score.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(101)))), ((int)(((byte)(96)))));
+            this.score.Location = new System.Drawing.Point(218, 28);
+            this.score.Name = "score";
+            this.score.Size = new System.Drawing.Size(200, 25);
+            this.score.Step = 1;
+            this.score.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.score.TabIndex = 27;
+            // 
             // Mainform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(643, 475);
+            this.Controls.Add(this.score);
+            this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.size);
@@ -306,7 +355,6 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.align);
-            this.Controls.Add(this.test);
             this.Controls.Add(this.gnrte);
             this.Controls.Add(this.panel12);
             this.Controls.Add(this.panel11);
@@ -334,6 +382,7 @@
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -342,7 +391,6 @@
         #endregion
 
         private System.Windows.Forms.Button gnrte;
-        private System.Windows.Forms.Button test;
         private System.Windows.Forms.Label align;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel1;
@@ -365,5 +413,10 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Label gridsxdim;
+        private System.Windows.Forms.Label levelsdim;
+        private System.Windows.Forms.Label gridsydim;
+        private System.Windows.Forms.ProgressBar score;
     }
 }
